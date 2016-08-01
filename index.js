@@ -8,10 +8,15 @@ const morgan = require('morgan')
 const app = express()
 const port = process.env.PORT ||3090
 const router = require('./router')
+const mongoose = require('mongoose')
+//DB
+mongoose.connect('mongodb://localhost:auth/auth')
 //app setup
 app.use(morgan('combined'))
 app.use(bodyParser.json({type:'*/*'}))
 router(app)
+
+
 //server setup
 const server = http.createServer(app)
 server.listen(port)
